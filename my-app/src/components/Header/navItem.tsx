@@ -12,7 +12,7 @@ export default function NavItem({
     const [Hovered, setHovered] = useState<boolean>(false);
     return (
         <motion.li
-            key={item}
+            key={index}
             whileHover={{
                 scale: 1,
                 fontSize: '24px',

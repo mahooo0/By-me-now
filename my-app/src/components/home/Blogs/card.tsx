@@ -1,12 +1,15 @@
 'use client';
 import UnderlineBtn from '@/components/buttons/underline';
-import Image from 'next/image';
 import React from 'react';
 import { motion } from 'framer-motion';
 
 const textVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: (i: any) => ({ opacity: 1, y: 0, transition: { delay: i * 0.2 } }),
+    visible: (i: number) => ({
+        opacity: 1,
+        y: 0,
+        transition: { delay: i * 0.2 },
+    }),
 };
 
 const imgVariants = {
