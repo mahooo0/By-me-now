@@ -54,8 +54,8 @@ export default function BlogCard({ isRow = true, imgW = 'auto' }) {
                 </motion.div>
             </div>
             <motion.img
-                className={`h-[${
-                    imgW ? '345px' : 'auto'
+                className={`max-h-[345px] h-[${
+                    !imgW ? '345px' : 'auto'
                 }] lg:w-[${imgW}] sm:w-full`}
                 src={'/images/blog.png'}
                 alt=""
