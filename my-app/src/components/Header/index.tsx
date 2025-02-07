@@ -2,18 +2,38 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavItem from './navItem';
 import LanguageSwitcher from './language';
 import MobileBar from './mobileBar';
 
 export default function Header() {
     const [isMobileBarOpen, setIsMobileBarOpen] = useState<boolean>(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > lastScrollY) {
+                setIsVisible(false); // hide header when scrolling down
+            } else {
+                setIsVisible(true); // show header when scrolling up
+            }
+            setLastScrollY(window.scrollY); // update last scroll position
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
     if (!isMobileBarOpen)
         return (
             <motion.header
                 initial={{ opacity: 0, x: 0 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={{ opacity: isVisible ? 1 : 0, y: 0 }}
                 transition={{ duration: 0.5 }}
                 className="flex flex-row fixed top-0 z-50 justify-between lg:justify-center max-sm:px-[12px] px-[27px] py-1 items-center border-b border-[#FFFFFF] backdrop-blur-lg w-full"
             >
@@ -35,7 +55,7 @@ export default function Header() {
                     </h2>
                 </motion.div>
 
-                <nav className="w-fit  h-fit text-[20px] font-medium lg:flex hidden flex-row  mx-auto">
+                <nav className="w-fit h-fit text-[20px] font-medium lg:flex hidden flex-row mx-auto">
                     <ul className="flex flex-row gap-4 text-[#A8AFCC] justify-end min-h-[40px] items-end">
                         {[
                             'Cars',
@@ -48,7 +68,7 @@ export default function Header() {
                         ))}
                     </ul>
                 </nav>
-                <div className="w-[260px] hidden lg:flex  justify-end">
+                <div className="w-[260px] hidden lg:flex justify-end">
                     <LanguageSwitcher />
                 </div>
                 <button
