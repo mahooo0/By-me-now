@@ -56,7 +56,7 @@ html {
     -webkit-animation: grain 7s steps(10) infinite;
     animation: grain 7s steps(10) infinite;
     background-image: url('/images/noise.png');
-
+    z-index: -1;
     background-size: 200px;
     background-repeat: repeat;
     opacity: 0.25;
@@ -64,4 +64,15 @@ html {
 }
 .font_Playfair {
     font-family: 'Playfair Display';
+}
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    content: '▼';
+    font-size: 1rem;
+    top: 6px;
+    right: 10px;
+    position: absolute;
 }

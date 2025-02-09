@@ -8,11 +8,11 @@ export function Title({
     className?: string;
 }) {
     return (
-        <h3
+        <h1
             className={` text-[#A8AFCC] xl:text-6xl lg:text-5xl text-3xl  ${className}`}
         >
             {children}
-        </h3>
+        </h1>
     );
 }
 export function Description({

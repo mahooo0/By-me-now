@@ -1,3 +1,4 @@
+import Bunner from '@/components/about/bunner';
 import Hero from '@/components/about/hero';
 import Images3 from '@/components/about/Images3';
 import ScrollVideo from '@/components/about/scrollvidion';
@@ -9,6 +10,7 @@ export default function page() {
             <Hero />
             <ScrollVideo />
             <Images3 />
+            <Bunner />
         </div>
     );
 }
